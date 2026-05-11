@@ -3,154 +3,140 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conejo Roto — Demo Reel</title>
+<title>Conejo Roto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg: #111;
-    --bg2: #1a1a1a;
-    --bg3: #222;
-    --border: rgba(255,255,255,0.08);
-    --text: #e8e8e8;
-    --muted: #888;
-    --accent: #c8c8c8;
-    --tag-bg: #2a2a2a;
-    --tag-text: #aaa;
-    --nav-active: #e8e8e8;
-    --nav-inactive: #555;
+    --bg: #f5f4f0;
+    --text: #0e0e0e;
+    --muted: #999;
+    --border: #d8d6d0;
   }
 
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
   }
 
-  /* HEADER */
-  header {
-    padding: 3rem 2rem 0;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .brand {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.4rem;
-  }
-
-  header h1 {
-    font-size: 28px;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    color: var(--text);
-  }
-
-  /* MAIN NAV */
-  .main-nav {
-    display: flex;
-    gap: 2rem;
-    margin-top: 2.5rem;
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--bg);
     border-bottom: 0.5px solid var(--border);
-    padding-bottom: 0;
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 52px;
   }
 
-  .main-nav button {
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links button {
     background: none;
     border: none;
-    font-size: 13px;
-    letter-spacing: 0.1em;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--nav-inactive);
+    color: var(--muted);
     cursor: pointer;
-    padding: 0.75rem 0;
-    border-bottom: 1.5px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
-    font-family: inherit;
+    padding: 0;
+    transition: color 0.2s;
   }
 
-  .main-nav button.active {
-    color: var(--nav-active);
-    border-bottom-color: var(--nav-active);
-  }
+  .nav-links button.active,
+  .nav-links button:hover { color: var(--text); }
 
-  .main-nav button:hover {
-    color: var(--accent);
-  }
+  main { padding-top: 52px; }
 
-  /* SECTION */
-  .section {
-    display: none;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 2rem 4rem;
-  }
-
+  .section { display: none; }
   .section.active { display: block; }
 
-  /* SUB NAV */
   .sub-nav {
     display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
+    gap: 2rem;
+    padding: 1.25rem 2.5rem;
+    border-bottom: 0.5px solid var(--border);
+    position: sticky;
+    top: 52px;
+    background: var(--bg);
+    z-index: 90;
   }
 
   .sub-nav button {
     background: none;
-    border: 0.5px solid var(--border);
-    border-radius: 20px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
     font-size: 11px;
-    letter-spacing: 0.1em;
+    font-weight: 400;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--muted);
     cursor: pointer;
-    padding: 5px 14px;
-    transition: all 0.2s;
-    font-family: inherit;
+    padding: 0;
+    transition: color 0.2s;
   }
 
-  .sub-nav button.active {
-    border-color: rgba(255,255,255,0.35);
-    color: var(--text);
-    background: rgba(255,255,255,0.04);
-  }
+  .sub-nav button.active,
+  .sub-nav button:hover { color: var(--text); }
 
-  .sub-nav button:hover {
-    border-color: rgba(255,255,255,0.25);
-    color: var(--accent);
-  }
-
-  /* SUBSECTION */
   .subsection { display: none; }
   .subsection.active { display: block; }
 
-  /* GRID */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.25rem;
+  .video-item {
+    border-bottom: 0.5px solid var(--border);
+    padding: 3rem 2.5rem;
   }
 
-  /* CARD */
-  .card {
-    background: var(--bg2);
-    border: 0.5px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: border-color 0.2s;
+  .video-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
   }
 
-  .card:hover { border-color: rgba(255,255,255,0.18); }
+  .video-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    letter-spacing: 0.04em;
+    color: var(--text);
+    line-height: 1;
+    font-weight: 400;
+  }
+
+  .video-director {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .video-year {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
 
   .embed-wrap {
     position: relative;
@@ -158,6 +144,7 @@
     height: 0;
     overflow: hidden;
     background: #000;
+    max-width: 960px;
   }
 
   .embed-wrap iframe {
@@ -167,656 +154,324 @@
     border: none;
   }
 
-  .card-body {
-    padding: 0.9rem 1rem 1rem;
-  }
-
-  .card-title {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--text);
-    line-height: 1.4;
-  }
-
-  .card-meta {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  .tag {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    background: var(--tag-bg);
-    color: var(--tag-text);
-    margin-top: 10px;
-  }
-
-  /* FOOTER */
   footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
+    padding: 2.5rem;
+    display: flex;
+    justify-content: space-between;
     border-top: 0.5px solid var(--border);
+  }
+
+  footer p {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
   }
 </style>
 </head>
 <body>
 
-<header>
-  <p class="brand">Conejo Roto</p>
-  <h1>Demo Reel</h1>
-</header>
-
-<nav class="main-nav">
-  <button class="active" onclick="showSection('direccion', this)">Dirección</button>
-  <button onclick="showSection('fotografia', this)">Fotografía</button>
+<nav>
+  <a class="nav-brand" href="#">Conejo Roto</a>
+  <ul class="nav-links">
+    <li><button class="active" onclick="showSection('direccion', this)">Dirección</button></li>
+    <li><button onclick="showSection('fotografia', this)">Fotografía</button></li>
+  </ul>
 </nav>
 
-<!-- ===================== DIRECCIÓN ===================== -->
-<div id="direccion" class="section active">
+<main>
 
+<!-- DIRECCIÓN -->
+<div id="direccion" class="section active">
   <div class="sub-nav">
-    <button class="active" onclick="showSub('dir', 'ficcion', this)">Ficción</button>
-    <button onclick="showSub('dir', 'comerciales', this)">Comerciales</button>
-    <button onclick="showSub('dir', 'documentales', this)">Documentales</button>
-    <button onclick="showSub('dir', 'musicales', this)">Videos Musicales</button>
+    <button class="active" onclick="showSub('dir','ficcion',this)">Ficción</button>
+    <button onclick="showSub('dir','comerciales',this)">Comerciales</button>
+    <button onclick="showSub('dir','documentales',this)">Documentales</button>
+    <button onclick="showSub('dir','musicales',this)">Videos Musicales</button>
   </div>
 
   <div id="dir-ficcion" class="subsection active">
-    <div class="grid">
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/QN6aq_2bpzA" loading="lazy" allowfullscreen title="Diciembre"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Diciembre</p>
-          <p class="card-meta">Largometraje · 2021</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/hQOq1xVtENg" loading="lazy" allowfullscreen title="Enero"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Enero</p>
-          <p class="card-meta">Largometraje · 2026</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/9b4609ugVkM" loading="lazy" allowfullscreen title="Bounty"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Bounty</p>
-          <p class="card-meta">Cortometraje · 2013</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/xvNKATNYmN4" loading="lazy" allowfullscreen title="La Costra"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">La Costra</p>
-          <p class="card-meta">Cortometraje · 2012</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/hfxxr9mWPyk" loading="lazy" allowfullscreen title="Desierto"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Desierto</p>
-          <p class="card-meta">Cortometraje · 2021</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/tzP93TV4kNo" loading="lazy" allowfullscreen title="Too Dry To Be Wet - The Nightmare"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Too Dry To Be Wet — The Nightmare</p>
-          <p class="card-meta">Cortometraje</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/dWjleKA1Uv8" loading="lazy" allowfullscreen title="Alicia"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Alicia</p>
-          <p class="card-meta">Cortometraje · 2021</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/1LXAqIakgas" loading="lazy" allowfullscreen title="Futuro"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Futuro</p>
-          <p class="card-meta">Cortometraje · 2012</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/wrGIdnsc3IE" loading="lazy" allowfullscreen title="Vacuo"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Vacuo</p>
-          <p class="card-meta">Largometraje · En posproducción</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Diciembre</h2><span class="video-director">Largometraje</span><span class="video-year">2021</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/QN6aq_2bpzA" loading="lazy" allowfullscreen title="Diciembre"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Enero</h2><span class="video-director">Largometraje</span><span class="video-year">2026</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/hQOq1xVtENg" loading="lazy" allowfullscreen title="Enero"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Bounty</h2><span class="video-director">Cortometraje</span><span class="video-year">2013</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/9b4609ugVkM" loading="lazy" allowfullscreen title="Bounty"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">La Costra</h2><span class="video-director">Cortometraje</span><span class="video-year">2012</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/xvNKATNYmN4" loading="lazy" allowfullscreen title="La Costra"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Desierto</h2><span class="video-director">Cortometraje</span><span class="video-year">2021</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/hfxxr9mWPyk" loading="lazy" allowfullscreen title="Desierto"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Too Dry To Be Wet — The Nightmare</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/tzP93TV4kNo" loading="lazy" allowfullscreen title="Too Dry To Be Wet"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Alicia</h2><span class="video-director">Cortometraje</span><span class="video-year">2021</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/dWjleKA1Uv8" loading="lazy" allowfullscreen title="Alicia"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Futuro</h2><span class="video-director">Cortometraje</span><span class="video-year">2012</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/1LXAqIakgas" loading="lazy" allowfullscreen title="Futuro"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Vacuo</h2><span class="video-director">Largometraje · En posproducción</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/wrGIdnsc3IE" loading="lazy" allowfullscreen title="Vacuo"></iframe></div>
     </div>
   </div>
 
   <div id="dir-comerciales" class="subsection">
-    <div class="grid">
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/g-NGOEYkiFo" loading="lazy" allowfullscreen title="Campaña Adicciones 1"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Campaña Adicciones — Gobierno de la República</p>
-          <p class="card-meta">Spot 1</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/pydmxk-NQRw" loading="lazy" allowfullscreen title="Campaña Adicciones 2"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Campaña Adicciones — Gobierno de la República</p>
-          <p class="card-meta">Spot 2</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/TbBaKtG2-iI" loading="lazy" allowfullscreen title="Fundación Banorte 1"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Fundación Banorte</p>
-          <p class="card-meta">Spot 1</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/k0DmZEe4rhY" loading="lazy" allowfullscreen title="Fundación Banorte 2"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Fundación Banorte</p>
-          <p class="card-meta">Spot 2</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/qYg6uTX6c9c" loading="lazy" allowfullscreen title="Fundación Banorte 3"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Fundación Banorte</p>
-          <p class="card-meta">Spot 3</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/5hR5myuFjrM" loading="lazy" allowfullscreen title="Guardia Nacional 1"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Campaña Guardia Nacional</p>
-          <p class="card-meta">Spot 1</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/WXqbfm0YZNI" loading="lazy" allowfullscreen title="Guardia Nacional 2"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Campaña Guardia Nacional</p>
-          <p class="card-meta">Spot 2</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/kI_HSA8Aq0E" loading="lazy" allowfullscreen title="Guardia Nacional 3"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Campaña Guardia Nacional</p>
-          <p class="card-meta">Spot 3</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Campaña Adicciones</h2><span class="video-director">Gobierno de la República · Spot 1</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/g-NGOEYkiFo" loading="lazy" allowfullscreen title="Adicciones 1"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Campaña Adicciones</h2><span class="video-director">Gobierno de la República · Spot 2</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/pydmxk-NQRw" loading="lazy" allowfullscreen title="Adicciones 2"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Fundación Banorte</h2><span class="video-director">Spot 1</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/TbBaKtG2-iI" loading="lazy" allowfullscreen title="Banorte 1"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Fundación Banorte</h2><span class="video-director">Spot 2</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/k0DmZEe4rhY" loading="lazy" allowfullscreen title="Banorte 2"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Fundación Banorte</h2><span class="video-director">Spot 3</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/qYg6uTX6c9c" loading="lazy" allowfullscreen title="Banorte 3"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Campaña Guardia Nacional</h2><span class="video-director">Spot 1</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/5hR5myuFjrM" loading="lazy" allowfullscreen title="Guardia 1"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Campaña Guardia Nacional</h2><span class="video-director">Spot 2</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/WXqbfm0YZNI" loading="lazy" allowfullscreen title="Guardia 2"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Campaña Guardia Nacional</h2><span class="video-director">Spot 3</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/kI_HSA8Aq0E" loading="lazy" allowfullscreen title="Guardia 3"></iframe></div>
     </div>
   </div>
 
   <div id="dir-documentales" class="subsection">
-    <div class="grid">
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/20icg-uYwMQ" loading="lazy" allowfullscreen title="Herida Negra"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Herida Negra</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/9coLbmYEADA" loading="lazy" allowfullscreen title="RamOn"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">RamOn</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/PpnKXfMQe1g" loading="lazy" allowfullscreen title="Toro"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Toro</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/DwLWln4SWGE" loading="lazy" allowfullscreen title="Festival de la Huasteca"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Festival de la Huasteca</p>
-          <p class="card-meta">CONACULTA</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/EwZaiT6KkvA" loading="lazy" allowfullscreen title="Orquesta Juvenil e Infantil de Oaxaca"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Concierto de la Orquesta Juvenil e Infantil de Oaxaca</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/o9ufiND4Lc0" loading="lazy" allowfullscreen title="Festival del Hongo de Pachuca"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Festival del Hongo de Pachuca</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Herida Negra</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/20icg-uYwMQ" loading="lazy" allowfullscreen title="Herida Negra"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">RamOn</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/9coLbmYEADA" loading="lazy" allowfullscreen title="RamOn"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Toro</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/PpnKXfMQe1g" loading="lazy" allowfullscreen title="Toro"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Festival de la Huasteca</h2><span class="video-director">CONACULTA</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/DwLWln4SWGE" loading="lazy" allowfullscreen title="Huasteca"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Orquesta Juvenil e Infantil de Oaxaca</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/EwZaiT6KkvA" loading="lazy" allowfullscreen title="Orquesta Oaxaca"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Festival del Hongo de Pachuca</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/o9ufiND4Lc0" loading="lazy" allowfullscreen title="Festival Hongo"></iframe></div>
     </div>
   </div>
 
   <div id="dir-musicales" class="subsection">
-    <div class="grid">
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/C9fnGKQFn94" loading="lazy" allowfullscreen title="Erotik - Canek"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Erotik</p>
-          <p class="card-meta">Canek</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/4goF5pbqjrs" loading="lazy" allowfullscreen title="Hungry - Perro Lu"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Hungry</p>
-          <p class="card-meta">Perro Lu</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/zqLJhg3wxsY" loading="lazy" allowfullscreen title="Nadia Comaneci - Epileptics"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Nadia Comaneci</p>
-          <p class="card-meta">Epileptics</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/ISQx-QEfZuM" loading="lazy" allowfullscreen title="Naloxona - Epileptics"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Naloxona</p>
-          <p class="card-meta">Epileptics</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/eG7NCithyYU" loading="lazy" allowfullscreen title="Paar - Lost"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Paar</p>
-          <p class="card-meta">Lost</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Erotik</h2><span class="video-director">Canek</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/C9fnGKQFn94" loading="lazy" allowfullscreen title="Erotik"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Hungry</h2><span class="video-director">Perro Lu</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/4goF5pbqjrs" loading="lazy" allowfullscreen title="Hungry"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Nadia Comaneci</h2><span class="video-director">Epileptics</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/zqLJhg3wxsY" loading="lazy" allowfullscreen title="Nadia Comaneci"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Naloxona</h2><span class="video-director">Epileptics</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/ISQx-QEfZuM" loading="lazy" allowfullscreen title="Naloxona"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Paar</h2><span class="video-director">Lost</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/eG7NCithyYU" loading="lazy" allowfullscreen title="Paar"></iframe></div>
     </div>
   </div>
-
 </div>
 
-<!-- ===================== FOTOGRAFÍA ===================== -->
+<!-- FOTOGRAFÍA -->
 <div id="fotografia" class="section">
-
   <div class="sub-nav">
-    <button class="active" onclick="showSub('foto', 'ficcion', this)">Ficción</button>
-    <button onclick="showSub('foto', 'comerciales', this)">Comerciales</button>
-    <button onclick="showSub('foto', 'documentales', this)">Documentales</button>
-    <button onclick="showSub('foto', 'musicales', this)">Videos Musicales</button>
+    <button class="active" onclick="showSub('foto','ficcion',this)">Ficción</button>
+    <button onclick="showSub('foto','comerciales',this)">Comerciales</button>
+    <button onclick="showSub('foto','documentales',this)">Documentales</button>
+    <button onclick="showSub('foto','musicales',this)">Videos Musicales</button>
   </div>
 
   <div id="foto-ficcion" class="subsection active">
-    <div class="grid">
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/0f4CEffkQdE" loading="lazy" allowfullscreen title="Rachas Rotas 1"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Rachas Rotas</p>
-          <p class="card-meta">Dir. Arturo Núñez · 2022 · Clip 1</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/RDFv5PdMJgI" loading="lazy" allowfullscreen title="Rachas Rotas 2"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Rachas Rotas</p>
-          <p class="card-meta">Dir. Arturo Núñez · 2022 · Clip 2</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/1rXtGYbk5Qo" loading="lazy" allowfullscreen title="Diciembre - Fotografía"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Diciembre</p>
-          <p class="card-meta">Largometraje · 2021</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/hQOq1xVtENg" loading="lazy" allowfullscreen title="Enero - Fotografía"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Enero</p>
-          <p class="card-meta">Largometraje · 2026</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/wrGIdnsc3IE" loading="lazy" allowfullscreen title="Vacuo - Fotografía"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Vacuo</p>
-          <p class="card-meta">Largometraje · En posproducción</p>
-          <span class="tag">Ficción</span>
-        </div>
-      </div>
-
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Rachas Rotas</h2><span class="video-director">Dir. Arturo Núñez</span><span class="video-year">2022 · Clip 1</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/0f4CEffkQdE" loading="lazy" allowfullscreen title="Rachas Rotas 1"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Rachas Rotas</h2><span class="video-director">Dir. Arturo Núñez</span><span class="video-year">2022 · Clip 2</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/RDFv5PdMJgI" loading="lazy" allowfullscreen title="Rachas Rotas 2"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Diciembre</h2><span class="video-director">Largometraje</span><span class="video-year">2021</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/1rXtGYbk5Qo" loading="lazy" allowfullscreen title="Diciembre foto"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Enero</h2><span class="video-director">Largometraje</span><span class="video-year">2026</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/hQOq1xVtENg" loading="lazy" allowfullscreen title="Enero foto"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Vacuo</h2><span class="video-director">Largometraje · En posproducción</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/wrGIdnsc3IE" loading="lazy" allowfullscreen title="Vacuo foto"></iframe></div>
     </div>
   </div>
 
   <div id="foto-comerciales" class="subsection">
-    <div class="grid">
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/g-NGOEYkiFo" loading="lazy" allowfullscreen title="Campaña Adicciones 1"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Campaña Adicciones — Gobierno de la República</p>
-          <p class="card-meta">Spot 1</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/pydmxk-NQRw" loading="lazy" allowfullscreen title="Campaña Adicciones 2"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Campaña Adicciones — Gobierno de la República</p>
-          <p class="card-meta">Spot 2</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/TsD6LSazhQs" loading="lazy" allowfullscreen title="Tamariz 1"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Tamariz</p>
-          <p class="card-meta">Spot 1</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/UPAo5uZaSvw" loading="lazy" allowfullscreen title="Tamariz 2"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Tamariz</p>
-          <p class="card-meta">Spot 2</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/Ntpv8t66OCE" loading="lazy" allowfullscreen title="Tamariz 3"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Tamariz</p>
-          <p class="card-meta">Spot 3</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/hUcBhHjtG6E" loading="lazy" allowfullscreen title="Tamariz 4"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Tamariz</p>
-          <p class="card-meta">Spot 4</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/HGmi952KcPs" loading="lazy" allowfullscreen title="Revista IMSS"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Revista IMSS</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/TbBaKtG2-iI" loading="lazy" allowfullscreen title="Fundación Banorte 1"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Fundación Banorte</p>
-          <p class="card-meta">Spot 1</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/k0DmZEe4rhY" loading="lazy" allowfullscreen title="Fundación Banorte 2"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Fundación Banorte</p>
-          <p class="card-meta">Spot 2</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/qYg6uTX6c9c" loading="lazy" allowfullscreen title="Fundación Banorte 3"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Fundación Banorte</p>
-          <p class="card-meta">Spot 3</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/5hR5myuFjrM" loading="lazy" allowfullscreen title="Guardia Nacional 1"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Campaña Guardia Nacional</p>
-          <p class="card-meta">Spot 1</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/WXqbfm0YZNI" loading="lazy" allowfullscreen title="Guardia Nacional 2"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Campaña Guardia Nacional</p>
-          <p class="card-meta">Spot 2</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/kI_HSA8Aq0E" loading="lazy" allowfullscreen title="Guardia Nacional 3"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Campaña Guardia Nacional</p>
-          <p class="card-meta">Spot 3</p>
-          <span class="tag">Comercial</span>
-        </div>
-      </div>
-
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Campaña Adicciones</h2><span class="video-director">Gobierno de la República · Spot 1</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/g-NGOEYkiFo" loading="lazy" allowfullscreen title="Adicciones 1"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Campaña Adicciones</h2><span class="video-director">Gobierno de la República · Spot 2</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/pydmxk-NQRw" loading="lazy" allowfullscreen title="Adicciones 2"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Tamariz</h2><span class="video-director">Spot 1</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/TsD6LSazhQs" loading="lazy" allowfullscreen title="Tamariz 1"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Tamariz</h2><span class="video-director">Spot 2</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/UPAo5uZaSvw" loading="lazy" allowfullscreen title="Tamariz 2"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Tamariz</h2><span class="video-director">Spot 3</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/Ntpv8t66OCE" loading="lazy" allowfullscreen title="Tamariz 3"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Tamariz</h2><span class="video-director">Spot 4</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/hUcBhHjtG6E" loading="lazy" allowfullscreen title="Tamariz 4"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Revista IMSS</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/HGmi952KcPs" loading="lazy" allowfullscreen title="IMSS"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Fundación Banorte</h2><span class="video-director">Spot 1</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/TbBaKtG2-iI" loading="lazy" allowfullscreen title="Banorte 1"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Fundación Banorte</h2><span class="video-director">Spot 2</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/k0DmZEe4rhY" loading="lazy" allowfullscreen title="Banorte 2"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Fundación Banorte</h2><span class="video-director">Spot 3</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/qYg6uTX6c9c" loading="lazy" allowfullscreen title="Banorte 3"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Campaña Guardia Nacional</h2><span class="video-director">Spot 1</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/5hR5myuFjrM" loading="lazy" allowfullscreen title="Guardia 1"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Campaña Guardia Nacional</h2><span class="video-director">Spot 2</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/WXqbfm0YZNI" loading="lazy" allowfullscreen title="Guardia 2"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Campaña Guardia Nacional</h2><span class="video-director">Spot 3</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/kI_HSA8Aq0E" loading="lazy" allowfullscreen title="Guardia 3"></iframe></div>
     </div>
   </div>
 
   <div id="foto-documentales" class="subsection">
-    <div class="grid">
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/20icg-uYwMQ" loading="lazy" allowfullscreen title="Herida Negra"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Herida Negra</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/9coLbmYEADA" loading="lazy" allowfullscreen title="RamOn"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">RamOn</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/PpnKXfMQe1g" loading="lazy" allowfullscreen title="Toro"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Toro</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/DwLWln4SWGE" loading="lazy" allowfullscreen title="Festival de la Huasteca"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Festival de la Huasteca</p>
-          <p class="card-meta">CONACULTA</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/EwZaiT6KkvA" loading="lazy" allowfullscreen title="Orquesta Juvenil e Infantil de Oaxaca"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Concierto de la Orquesta Juvenil e Infantil de Oaxaca</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/o9ufiND4Lc0" loading="lazy" allowfullscreen title="Festival del Hongo de Pachuca"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Festival del Hongo de Pachuca</p>
-          <span class="tag">Documental</span>
-        </div>
-      </div>
-
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Herida Negra</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/20icg-uYwMQ" loading="lazy" allowfullscreen title="Herida Negra"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">RamOn</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/9coLbmYEADA" loading="lazy" allowfullscreen title="RamOn"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Toro</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/PpnKXfMQe1g" loading="lazy" allowfullscreen title="Toro"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Festival de la Huasteca</h2><span class="video-director">CONACULTA</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/DwLWln4SWGE" loading="lazy" allowfullscreen title="Huasteca"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Orquesta Juvenil e Infantil de Oaxaca</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/EwZaiT6KkvA" loading="lazy" allowfullscreen title="Orquesta"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Festival del Hongo de Pachuca</h2></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/o9ufiND4Lc0" loading="lazy" allowfullscreen title="Festival Hongo"></iframe></div>
     </div>
   </div>
 
   <div id="foto-musicales" class="subsection">
-    <div class="grid">
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/hYMG4NGXPxc" loading="lazy" allowfullscreen title="Entre el Humo - Perro Lu"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Entre el Humo</p>
-          <p class="card-meta">Perro Lu · Dir. Sebastián Dante</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/chgzveinw2Y" loading="lazy" allowfullscreen title="Incendio - Perro Lu"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Incendio</p>
-          <p class="card-meta">Perro Lu · Dir. Sebastián Dante</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/C9fnGKQFn94" loading="lazy" allowfullscreen title="Erotik - Canek"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Erotik</p>
-          <p class="card-meta">Canek</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/4goF5pbqjrs" loading="lazy" allowfullscreen title="Hungry - Perro Lu"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Hungry</p>
-          <p class="card-meta">Perro Lu</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/zqLJhg3wxsY" loading="lazy" allowfullscreen title="Nadia Comaneci - Epileptics"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Nadia Comaneci</p>
-          <p class="card-meta">Epileptics</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/ISQx-QEfZuM" loading="lazy" allowfullscreen title="Naloxona - Epileptics"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Naloxona</p>
-          <p class="card-meta">Epileptics</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/eG7NCithyYU" loading="lazy" allowfullscreen title="Paar - Lost"></iframe></div>
-        <div class="card-body">
-          <p class="card-title">Paar</p>
-          <p class="card-meta">Lost</p>
-          <span class="tag">Video Musical</span>
-        </div>
-      </div>
-
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Entre el Humo</h2><span class="video-director">Perro Lu · Dir. Sebastián Dante</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/hYMG4NGXPxc" loading="lazy" allowfullscreen title="Entre el Humo"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Incendio</h2><span class="video-director">Perro Lu · Dir. Sebastián Dante</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/chgzveinw2Y" loading="lazy" allowfullscreen title="Incendio"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Erotik</h2><span class="video-director">Canek</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/C9fnGKQFn94" loading="lazy" allowfullscreen title="Erotik"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Hungry</h2><span class="video-director">Perro Lu</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/4goF5pbqjrs" loading="lazy" allowfullscreen title="Hungry"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Nadia Comaneci</h2><span class="video-director">Epileptics</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/zqLJhg3wxsY" loading="lazy" allowfullscreen title="Nadia Comaneci"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Naloxona</h2><span class="video-director">Epileptics</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/ISQx-QEfZuM" loading="lazy" allowfullscreen title="Naloxona"></iframe></div>
+    </div>
+    <div class="video-item">
+      <div class="video-meta"><h2 class="video-title">Paar</h2><span class="video-director">Lost</span></div>
+      <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/eG7NCithyYU" loading="lazy" allowfullscreen title="Paar"></iframe></div>
     </div>
   </div>
-
 </div>
 
-<footer>© 2026 Conejo Roto · México</footer>
+</main>
+
+<footer>
+  <p>Conejo Roto · México</p>
+  <p>© 2026</p>
+</footer>
 
 <script>
   function showSection(id, btn) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.main-nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     btn.classList.add('active');
   }
