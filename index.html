@@ -529,6 +529,17 @@
     document.getElementById(prefix + '-' + id).classList.add('active');
     btn.classList.add('active');
   }
+
+  function fixSubNavTop() {
+    const navHeight = document.querySelector('nav').offsetHeight;
+    document.querySelectorAll('.sub-nav').forEach(el => {
+      el.style.top = navHeight + 'px';
+    });
+    document.querySelector('main').style.paddingTop = navHeight + 'px';
+  }
+
+  window.addEventListener('load', fixSubNavTop);
+  window.addEventListener('resize', fixSubNavTop);
 </script>
 
 </body>
